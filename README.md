@@ -1,6 +1,6 @@
 # Giphy Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/giphy.svg)](https://pypi.org/project/giphy/)
+[![PyPI version](https://img.shields.io/pypi/v/rs-giphy-test.svg)](https://pypi.org/project/rs-giphy-test/)
 
 The Giphy Python library provides convenient access to the Giphy REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -15,12 +15,9 @@ The REST API documentation can be found on [developers.giphy.com](https://develo
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/rsata/giphy-sdk-python-test.git
+# install from PyPI
+pip install --pre rs-giphy-test
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre giphy`
 
 ## Usage
 
