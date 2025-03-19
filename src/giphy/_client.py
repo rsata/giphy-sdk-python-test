@@ -13,7 +13,6 @@ from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
     Omit,
-    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -104,12 +103,8 @@ class Giphy(SyncAPIClient):
         return Querystring(array_format="comma")
 
     @property
-    @override
-    def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
-            return {}
-        return {"Authorization": f"Bearer {api_key}"}
+    def auth_headers(self) -> httpx.Auth:
+        raise NotImplementedError("This auth method has not been implemented yet.")
 
     @property
     @override
@@ -120,16 +115,14 @@ class Giphy(SyncAPIClient):
             **self._custom_headers,
         }
 
+    @property
     @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
+    def default_query(self) -> dict[str, object]:
+        return {
+            **super().default_query,
+            "api_key": self.api_key if self.api_key is not None else Omit(),
+            **self._custom_query,
+        }
 
     def copy(
         self,
@@ -283,12 +276,8 @@ class AsyncGiphy(AsyncAPIClient):
         return Querystring(array_format="comma")
 
     @property
-    @override
-    def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
-            return {}
-        return {"Authorization": f"Bearer {api_key}"}
+    def auth_headers(self) -> httpx.Auth:
+        raise NotImplementedError("This auth method has not been implemented yet.")
 
     @property
     @override
@@ -299,16 +288,14 @@ class AsyncGiphy(AsyncAPIClient):
             **self._custom_headers,
         }
 
+    @property
     @override
-    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_key and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
-            return
-
-        raise TypeError(
-            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
-        )
+    def default_query(self) -> dict[str, object]:
+        return {
+            **super().default_query,
+            "api_key": self.api_key if self.api_key is not None else Omit(),
+            **self._custom_query,
+        }
 
     def copy(
         self,
