@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["GifListParams"]
+__all__ = ["GiffffListParams"]
 
 
-class GifListParams(TypedDict, total=False):
+class GiffffListParams(TypedDict, total=False):
     ids: str
     """Filters results by specified GIF IDs, separated by commas."""

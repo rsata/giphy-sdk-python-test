@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["GifTranslateParams"]
+__all__ = ["GiffffTranslateParams"]
 
 
-class GifTranslateParams(TypedDict, total=False):
+class GiffffTranslateParams(TypedDict, total=False):
     s: Required[str]
     """Search term."""

@@ -31,8 +31,8 @@ client = Giphy(
     api_key=os.environ.get("GIPHY_API_KEY"),  # This is the default and can be omitted
 )
 
-gifs = client.gifs.list()
-print(gifs.data)
+giffffs = client.giffffs.list()
+print(giffffs.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -55,8 +55,8 @@ client = AsyncGiphy(
 
 
 async def main() -> None:
-    gifs = await client.gifs.list()
-    print(gifs.data)
+    giffffs = await client.giffffs.list()
+    print(giffffs.data)
 
 
 asyncio.run(main())
@@ -89,7 +89,7 @@ from giphy import Giphy
 client = Giphy()
 
 try:
-    client.gifs.list()
+    client.giffffs.list()
 except giphy.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -132,7 +132,7 @@ client = Giphy(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).gifs.list()
+client.with_options(max_retries=5).giffffs.list()
 ```
 
 ### Timeouts
@@ -155,7 +155,7 @@ client = Giphy(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).gifs.list()
+client.with_options(timeout=5.0).giffffs.list()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -196,11 +196,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from giphy import Giphy
 
 client = Giphy()
-response = client.gifs.with_raw_response.list()
+response = client.giffffs.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
-gif = response.parse()  # get the object that `gifs.list()` would have returned
-print(gif.data)
+giffff = response.parse()  # get the object that `giffffs.list()` would have returned
+print(giffff.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/rsata/giphy-sdk-python-test/tree/main/src/giphy/_response.py) object.
@@ -214,7 +214,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.gifs.with_streaming_response.list() as response:
+with client.giffffs.with_streaming_response.list() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
