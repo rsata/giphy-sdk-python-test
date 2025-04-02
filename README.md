@@ -31,8 +31,8 @@ client = Giphy(
     api_key=os.environ.get("GIPHY_API_KEY"),  # This is the default and can be omitted
 )
 
-gif = client.gifs.list()
-print(gif.data)
+gifs = client.gifs.list()
+print(gifs.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -55,8 +55,8 @@ client = AsyncGiphy(
 
 
 async def main() -> None:
-    gif = await client.gifs.list()
-    print(gif.data)
+    gifs = await client.gifs.list()
+    print(gifs.data)
 
 
 asyncio.run(main())
