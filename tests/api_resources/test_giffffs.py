@@ -9,471 +9,471 @@ import pytest
 
 from giphy import Giphy, AsyncGiphy
 from giphy.types import (
-    GifListResponse,
-    GifSearchResponse,
-    GifRetrieveResponse,
-    GifGetRandomResponse,
-    GifTranslateResponse,
-    GifGetTrendingResponse,
+    GiffffListResponse,
+    GiffffSearchResponse,
+    GiffffRetrieveResponse,
+    GiffffGetRandomResponse,
+    GiffffTranslateResponse,
+    GiffffGetTrendingResponse,
 )
 from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestGifs:
+class TestGiffffs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_retrieve(self, client: Giphy) -> None:
-        gif = client.gifs.retrieve(
+        giffff = client.giffffs.retrieve(
             0,
         )
-        assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+        assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_retrieve(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.retrieve(
+        response = client.giffffs.with_raw_response.retrieve(
             0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_retrieve(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.retrieve(
+        with client.giffffs.with_streaming_response.retrieve(
             0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Giphy) -> None:
-        gif = client.gifs.list()
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        giffff = client.giffffs.list()
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Giphy) -> None:
-        gif = client.gifs.list(
+        giffff = client.giffffs.list(
             ids="ids",
         )
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.list()
+        response = client.giffffs.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.list() as response:
+        with client.giffffs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifListResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get_random(self, client: Giphy) -> None:
-        gif = client.gifs.get_random()
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        giffff = client.giffffs.get_random()
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get_random_with_all_params(self, client: Giphy) -> None:
-        gif = client.gifs.get_random(
+        giffff = client.giffffs.get_random(
             rating="rating",
             tag="tag",
         )
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get_random(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.get_random()
+        response = client.giffffs.with_raw_response.get_random()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get_random(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.get_random() as response:
+        with client.giffffs.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get_trending(self, client: Giphy) -> None:
-        gif = client.gifs.get_trending()
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        giffff = client.giffffs.get_trending()
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_get_trending_with_all_params(self, client: Giphy) -> None:
-        gif = client.gifs.get_trending(
+        giffff = client.giffffs.get_trending(
             limit=0,
             offset=0,
             rating="rating",
         )
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_get_trending(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.get_trending()
+        response = client.giffffs.with_raw_response.get_trending()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get_trending(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.get_trending() as response:
+        with client.giffffs.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_search(self, client: Giphy) -> None:
-        gif = client.gifs.search(
+        giffff = client.giffffs.search(
             q="q",
         )
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_search_with_all_params(self, client: Giphy) -> None:
-        gif = client.gifs.search(
+        giffff = client.giffffs.search(
             q="q",
             lang="lang",
             limit=0,
             offset=0,
             rating="rating",
         )
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_search(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.search(
+        response = client.giffffs.with_raw_response.search(
             q="q",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_search(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.search(
+        with client.giffffs.with_streaming_response.search(
             q="q",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifSearchResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_translate(self, client: Giphy) -> None:
-        gif = client.gifs.translate(
+        giffff = client.giffffs.translate(
             s="s",
         )
-        assert_matches_type(GifTranslateResponse, gif, path=["response"])
+        assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_translate(self, client: Giphy) -> None:
-        response = client.gifs.with_raw_response.translate(
+        response = client.giffffs.with_raw_response.translate(
             s="s",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = response.parse()
-        assert_matches_type(GifTranslateResponse, gif, path=["response"])
+        giffff = response.parse()
+        assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_translate(self, client: Giphy) -> None:
-        with client.gifs.with_streaming_response.translate(
+        with client.giffffs.with_streaming_response.translate(
             s="s",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = response.parse()
-            assert_matches_type(GifTranslateResponse, gif, path=["response"])
+            giffff = response.parse()
+            assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncGifs:
+class TestAsyncGiffffs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.retrieve(
+        giffff = await async_client.giffffs.retrieve(
             0,
         )
-        assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+        assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.retrieve(
+        response = await async_client.giffffs.with_raw_response.retrieve(
             0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.retrieve(
+        async with async_client.giffffs.with_streaming_response.retrieve(
             0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifRetrieveResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffRetrieveResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.list()
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        giffff = await async_client.giffffs.list()
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.list(
+        giffff = await async_client.giffffs.list(
             ids="ids",
         )
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.list()
+        response = await async_client.giffffs.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifListResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.list() as response:
+        async with async_client.giffffs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifListResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get_random(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.get_random()
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        giffff = await async_client.giffffs.get_random()
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get_random_with_all_params(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.get_random(
+        giffff = await async_client.giffffs.get_random(
             rating="rating",
             tag="tag",
         )
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get_random(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.get_random()
+        response = await async_client.giffffs.with_raw_response.get_random()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get_random(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.get_random() as response:
+        async with async_client.giffffs.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifGetRandomResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get_trending(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.get_trending()
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        giffff = await async_client.giffffs.get_trending()
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_get_trending_with_all_params(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.get_trending(
+        giffff = await async_client.giffffs.get_trending(
             limit=0,
             offset=0,
             rating="rating",
         )
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get_trending(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.get_trending()
+        response = await async_client.giffffs.with_raw_response.get_trending()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get_trending(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.get_trending() as response:
+        async with async_client.giffffs.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifGetTrendingResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_search(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.search(
+        giffff = await async_client.giffffs.search(
             q="q",
         )
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_search_with_all_params(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.search(
+        giffff = await async_client.giffffs.search(
             q="q",
             lang="lang",
             limit=0,
             offset=0,
             rating="rating",
         )
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_search(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.search(
+        response = await async_client.giffffs.with_raw_response.search(
             q="q",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifSearchResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_search(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.search(
+        async with async_client.giffffs.with_streaming_response.search(
             q="q",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifSearchResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffSearchResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_translate(self, async_client: AsyncGiphy) -> None:
-        gif = await async_client.gifs.translate(
+        giffff = await async_client.giffffs.translate(
             s="s",
         )
-        assert_matches_type(GifTranslateResponse, gif, path=["response"])
+        assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_translate(self, async_client: AsyncGiphy) -> None:
-        response = await async_client.gifs.with_raw_response.translate(
+        response = await async_client.giffffs.with_raw_response.translate(
             s="s",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        gif = await response.parse()
-        assert_matches_type(GifTranslateResponse, gif, path=["response"])
+        giffff = await response.parse()
+        assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_translate(self, async_client: AsyncGiphy) -> None:
-        async with async_client.gifs.with_streaming_response.translate(
+        async with async_client.giffffs.with_streaming_response.translate(
             s="s",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            gif = await response.parse()
-            assert_matches_type(GifTranslateResponse, gif, path=["response"])
+            giffff = await response.parse()
+            assert_matches_type(GiffffTranslateResponse, giffff, path=["response"])
 
         assert cast(Any, response.is_closed) is True

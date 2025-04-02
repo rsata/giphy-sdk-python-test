@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["GifGetRandomParams"]
+__all__ = ["GiffffGetTrendingParams"]
 
 
-class GifGetRandomParams(TypedDict, total=False):
+class GiffffGetTrendingParams(TypedDict, total=False):
+    limit: int
+    """The maximum number of records to return."""
+
+    offset: int
+    """An optional results offset."""
+
     rating: str
     """Filters results by specified rating."""
-
-    tag: str
-    """Filters results by specified tag."""
