@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .gifs import (
-    GifsResource,
-    AsyncGifsResource,
-    GifsResourceWithRawResponse,
-    AsyncGifsResourceWithRawResponse,
-    GifsResourceWithStreamingResponse,
-    AsyncGifsResourceWithStreamingResponse,
+from .giffffs import (
+    GiffffsResource,
+    AsyncGiffffsResource,
+    GiffffsResourceWithRawResponse,
+    AsyncGiffffsResourceWithRawResponse,
+    GiffffsResourceWithStreamingResponse,
+    AsyncGiffffsResourceWithStreamingResponse,
 )
 from .stickers import (
     StickersResource,
@@ -18,12 +18,12 @@ from .stickers import (
 )
 
 __all__ = [
-    "GifsResource",
-    "AsyncGifsResource",
-    "GifsResourceWithRawResponse",
-    "AsyncGifsResourceWithRawResponse",
-    "GifsResourceWithStreamingResponse",
-    "AsyncGifsResourceWithStreamingResponse",
+    "GiffffsResource",
+    "AsyncGiffffsResource",
+    "GiffffsResourceWithRawResponse",
+    "AsyncGiffffsResourceWithRawResponse",
+    "GiffffsResourceWithStreamingResponse",
+    "AsyncGiffffsResourceWithStreamingResponse",
     "StickersResource",
     "AsyncStickersResource",
     "StickersResourceWithRawResponse",

@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import gifs, stickers
+from .resources import giffffs, stickers
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -37,7 +37,7 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Giphy", "A
 
 
 class Giphy(SyncAPIClient):
-    gifs: gifs.GifsResource
+    giffffs: giffffs.GiffffsResource
     stickers: stickers.StickersResource
     with_raw_response: GiphyWithRawResponse
     with_streaming_response: GiphyWithStreamedResponse
@@ -92,7 +92,7 @@ class Giphy(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.gifs = gifs.GifsResource(self)
+        self.giffffs = giffffs.GiffffsResource(self)
         self.stickers = stickers.StickersResource(self)
         self.with_raw_response = GiphyWithRawResponse(self)
         self.with_streaming_response = GiphyWithStreamedResponse(self)
@@ -210,7 +210,7 @@ class Giphy(SyncAPIClient):
 
 
 class AsyncGiphy(AsyncAPIClient):
-    gifs: gifs.AsyncGifsResource
+    giffffs: giffffs.AsyncGiffffsResource
     stickers: stickers.AsyncStickersResource
     with_raw_response: AsyncGiphyWithRawResponse
     with_streaming_response: AsyncGiphyWithStreamedResponse
@@ -265,7 +265,7 @@ class AsyncGiphy(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.gifs = gifs.AsyncGifsResource(self)
+        self.giffffs = giffffs.AsyncGiffffsResource(self)
         self.stickers = stickers.AsyncStickersResource(self)
         self.with_raw_response = AsyncGiphyWithRawResponse(self)
         self.with_streaming_response = AsyncGiphyWithStreamedResponse(self)
@@ -384,25 +384,25 @@ class AsyncGiphy(AsyncAPIClient):
 
 class GiphyWithRawResponse:
     def __init__(self, client: Giphy) -> None:
-        self.gifs = gifs.GifsResourceWithRawResponse(client.gifs)
+        self.giffffs = giffffs.GiffffsResourceWithRawResponse(client.giffffs)
         self.stickers = stickers.StickersResourceWithRawResponse(client.stickers)
 
 
 class AsyncGiphyWithRawResponse:
     def __init__(self, client: AsyncGiphy) -> None:
-        self.gifs = gifs.AsyncGifsResourceWithRawResponse(client.gifs)
+        self.giffffs = giffffs.AsyncGiffffsResourceWithRawResponse(client.giffffs)
         self.stickers = stickers.AsyncStickersResourceWithRawResponse(client.stickers)
 
 
 class GiphyWithStreamedResponse:
     def __init__(self, client: Giphy) -> None:
-        self.gifs = gifs.GifsResourceWithStreamingResponse(client.gifs)
+        self.giffffs = giffffs.GiffffsResourceWithStreamingResponse(client.giffffs)
         self.stickers = stickers.StickersResourceWithStreamingResponse(client.stickers)
 
 
 class AsyncGiphyWithStreamedResponse:
     def __init__(self, client: AsyncGiphy) -> None:
-        self.gifs = gifs.AsyncGifsResourceWithStreamingResponse(client.gifs)
+        self.giffffs = giffffs.AsyncGiffffsResourceWithStreamingResponse(client.giffffs)
         self.stickers = stickers.AsyncStickersResourceWithStreamingResponse(client.stickers)
 
 

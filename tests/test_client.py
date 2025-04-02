@@ -738,7 +738,7 @@ class TestGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = client.gifs.with_raw_response.list()
+        response = client.giffffs.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -760,7 +760,7 @@ class TestGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = client.gifs.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.giffffs.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -783,7 +783,7 @@ class TestGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = client.gifs.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.giffffs.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1491,7 +1491,7 @@ class TestAsyncGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = await client.gifs.with_raw_response.list()
+        response = await client.giffffs.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1516,7 +1516,7 @@ class TestAsyncGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = await client.gifs.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.giffffs.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1540,7 +1540,7 @@ class TestAsyncGiphy:
 
         respx_mock.get("/gifs").mock(side_effect=retry_handler)
 
-        response = await client.gifs.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.giffffs.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

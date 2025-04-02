@@ -5,11 +5,11 @@ from __future__ import annotations
 import httpx
 
 from ..types import (
-    gif_list_params,
-    gif_search_params,
-    gif_translate_params,
-    gif_get_random_params,
-    gif_get_trending_params,
+    giffff_list_params,
+    giffff_search_params,
+    giffff_translate_params,
+    giffff_get_random_params,
+    giffff_get_trending_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
@@ -25,35 +25,35 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.gif_list_response import GifListResponse
-from ..types.gif_search_response import GifSearchResponse
-from ..types.gif_retrieve_response import GifRetrieveResponse
-from ..types.gif_translate_response import GifTranslateResponse
-from ..types.gif_get_random_response import GifGetRandomResponse
-from ..types.gif_get_trending_response import GifGetTrendingResponse
+from ..types.giffff_list_response import GiffffListResponse
+from ..types.giffff_search_response import GiffffSearchResponse
+from ..types.giffff_retrieve_response import GiffffRetrieveResponse
+from ..types.giffff_translate_response import GiffffTranslateResponse
+from ..types.giffff_get_random_response import GiffffGetRandomResponse
+from ..types.giffff_get_trending_response import GiffffGetTrendingResponse
 
-__all__ = ["GifsResource", "AsyncGifsResource"]
+__all__ = ["GiffffsResource", "AsyncGiffffsResource"]
 
 
-class GifsResource(SyncAPIResource):
+class GiffffsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GifsResourceWithRawResponse:
+    def with_raw_response(self) -> GiffffsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/rsata/giphy-sdk-python-test#accessing-raw-response-data-eg-headers
         """
-        return GifsResourceWithRawResponse(self)
+        return GiffffsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GifsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> GiffffsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/rsata/giphy-sdk-python-test#with_streaming_response
         """
-        return GifsResourceWithStreamingResponse(self)
+        return GiffffsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -65,7 +65,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifRetrieveResponse:
+    ) -> GiffffRetrieveResponse:
         """
         Returns a GIF given that GIF's unique ID
 
@@ -83,7 +83,7 @@ class GifsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GifRetrieveResponse,
+            cast_to=GiffffRetrieveResponse,
         )
 
     def list(
@@ -96,7 +96,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifListResponse:
+    ) -> GiffffListResponse:
         """
         A multiget version of the get GIF by ID endpoint.
 
@@ -118,9 +118,9 @@ class GifsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"ids": ids}, gif_list_params.GifListParams),
+                query=maybe_transform({"ids": ids}, giffff_list_params.GiffffListParams),
             ),
-            cast_to=GifListResponse,
+            cast_to=GiffffListResponse,
         )
 
     def get_random(
@@ -134,7 +134,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifGetRandomResponse:
+    ) -> GiffffGetRandomResponse:
         """Returns a random GIF, limited by tag.
 
         Excluding the tag parameter will return a
@@ -165,10 +165,10 @@ class GifsResource(SyncAPIResource):
                         "rating": rating,
                         "tag": tag,
                     },
-                    gif_get_random_params.GifGetRandomParams,
+                    giffff_get_random_params.GiffffGetRandomParams,
                 ),
             ),
-            cast_to=GifGetRandomResponse,
+            cast_to=GiffffGetRandomResponse,
         )
 
     def get_trending(
@@ -183,7 +183,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifGetTrendingResponse:
+    ) -> GiffffGetTrendingResponse:
         """Fetch GIFs currently trending online.
 
         Hand curated by the GIPHY editorial team.
@@ -218,10 +218,10 @@ class GifsResource(SyncAPIResource):
                         "offset": offset,
                         "rating": rating,
                     },
-                    gif_get_trending_params.GifGetTrendingParams,
+                    giffff_get_trending_params.GiffffGetTrendingParams,
                 ),
             ),
-            cast_to=GifGetTrendingResponse,
+            cast_to=GiffffGetTrendingResponse,
         )
 
     def search(
@@ -238,7 +238,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifSearchResponse:
+    ) -> GiffffSearchResponse:
         """Search all GIPHY GIFs for a word or phrase.
 
         Punctuation will be stripped and
@@ -280,10 +280,10 @@ class GifsResource(SyncAPIResource):
                         "offset": offset,
                         "rating": rating,
                     },
-                    gif_search_params.GifSearchParams,
+                    giffff_search_params.GiffffSearchParams,
                 ),
             ),
-            cast_to=GifSearchResponse,
+            cast_to=GiffffSearchResponse,
         )
 
     def translate(
@@ -296,7 +296,7 @@ class GifsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifTranslateResponse:
+    ) -> GiffffTranslateResponse:
         """
         The translate API draws on search, but uses the GIPHY `special sauce` to handle
         translating from one vocabulary to another. In this case, words and phrases to
@@ -320,31 +320,31 @@ class GifsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"s": s}, gif_translate_params.GifTranslateParams),
+                query=maybe_transform({"s": s}, giffff_translate_params.GiffffTranslateParams),
             ),
-            cast_to=GifTranslateResponse,
+            cast_to=GiffffTranslateResponse,
         )
 
 
-class AsyncGifsResource(AsyncAPIResource):
+class AsyncGiffffsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncGifsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncGiffffsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/rsata/giphy-sdk-python-test#accessing-raw-response-data-eg-headers
         """
-        return AsyncGifsResourceWithRawResponse(self)
+        return AsyncGiffffsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGifsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncGiffffsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/rsata/giphy-sdk-python-test#with_streaming_response
         """
-        return AsyncGifsResourceWithStreamingResponse(self)
+        return AsyncGiffffsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -356,7 +356,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifRetrieveResponse:
+    ) -> GiffffRetrieveResponse:
         """
         Returns a GIF given that GIF's unique ID
 
@@ -374,7 +374,7 @@ class AsyncGifsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GifRetrieveResponse,
+            cast_to=GiffffRetrieveResponse,
         )
 
     async def list(
@@ -387,7 +387,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifListResponse:
+    ) -> GiffffListResponse:
         """
         A multiget version of the get GIF by ID endpoint.
 
@@ -409,9 +409,9 @@ class AsyncGifsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"ids": ids}, gif_list_params.GifListParams),
+                query=await async_maybe_transform({"ids": ids}, giffff_list_params.GiffffListParams),
             ),
-            cast_to=GifListResponse,
+            cast_to=GiffffListResponse,
         )
 
     async def get_random(
@@ -425,7 +425,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifGetRandomResponse:
+    ) -> GiffffGetRandomResponse:
         """Returns a random GIF, limited by tag.
 
         Excluding the tag parameter will return a
@@ -456,10 +456,10 @@ class AsyncGifsResource(AsyncAPIResource):
                         "rating": rating,
                         "tag": tag,
                     },
-                    gif_get_random_params.GifGetRandomParams,
+                    giffff_get_random_params.GiffffGetRandomParams,
                 ),
             ),
-            cast_to=GifGetRandomResponse,
+            cast_to=GiffffGetRandomResponse,
         )
 
     async def get_trending(
@@ -474,7 +474,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifGetTrendingResponse:
+    ) -> GiffffGetTrendingResponse:
         """Fetch GIFs currently trending online.
 
         Hand curated by the GIPHY editorial team.
@@ -509,10 +509,10 @@ class AsyncGifsResource(AsyncAPIResource):
                         "offset": offset,
                         "rating": rating,
                     },
-                    gif_get_trending_params.GifGetTrendingParams,
+                    giffff_get_trending_params.GiffffGetTrendingParams,
                 ),
             ),
-            cast_to=GifGetTrendingResponse,
+            cast_to=GiffffGetTrendingResponse,
         )
 
     async def search(
@@ -529,7 +529,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifSearchResponse:
+    ) -> GiffffSearchResponse:
         """Search all GIPHY GIFs for a word or phrase.
 
         Punctuation will be stripped and
@@ -571,10 +571,10 @@ class AsyncGifsResource(AsyncAPIResource):
                         "offset": offset,
                         "rating": rating,
                     },
-                    gif_search_params.GifSearchParams,
+                    giffff_search_params.GiffffSearchParams,
                 ),
             ),
-            cast_to=GifSearchResponse,
+            cast_to=GiffffSearchResponse,
         )
 
     async def translate(
@@ -587,7 +587,7 @@ class AsyncGifsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> GifTranslateResponse:
+    ) -> GiffffTranslateResponse:
         """
         The translate API draws on search, but uses the GIPHY `special sauce` to handle
         translating from one vocabulary to another. In this case, words and phrases to
@@ -611,103 +611,103 @@ class AsyncGifsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"s": s}, gif_translate_params.GifTranslateParams),
+                query=await async_maybe_transform({"s": s}, giffff_translate_params.GiffffTranslateParams),
             ),
-            cast_to=GifTranslateResponse,
+            cast_to=GiffffTranslateResponse,
         )
 
 
-class GifsResourceWithRawResponse:
-    def __init__(self, gifs: GifsResource) -> None:
-        self._gifs = gifs
+class GiffffsResourceWithRawResponse:
+    def __init__(self, giffffs: GiffffsResource) -> None:
+        self._giffffs = giffffs
 
         self.retrieve = to_raw_response_wrapper(
-            gifs.retrieve,
+            giffffs.retrieve,
         )
         self.list = to_raw_response_wrapper(
-            gifs.list,
+            giffffs.list,
         )
         self.get_random = to_raw_response_wrapper(
-            gifs.get_random,
+            giffffs.get_random,
         )
         self.get_trending = to_raw_response_wrapper(
-            gifs.get_trending,
+            giffffs.get_trending,
         )
         self.search = to_raw_response_wrapper(
-            gifs.search,
+            giffffs.search,
         )
         self.translate = to_raw_response_wrapper(
-            gifs.translate,
+            giffffs.translate,
         )
 
 
-class AsyncGifsResourceWithRawResponse:
-    def __init__(self, gifs: AsyncGifsResource) -> None:
-        self._gifs = gifs
+class AsyncGiffffsResourceWithRawResponse:
+    def __init__(self, giffffs: AsyncGiffffsResource) -> None:
+        self._giffffs = giffffs
 
         self.retrieve = async_to_raw_response_wrapper(
-            gifs.retrieve,
+            giffffs.retrieve,
         )
         self.list = async_to_raw_response_wrapper(
-            gifs.list,
+            giffffs.list,
         )
         self.get_random = async_to_raw_response_wrapper(
-            gifs.get_random,
+            giffffs.get_random,
         )
         self.get_trending = async_to_raw_response_wrapper(
-            gifs.get_trending,
+            giffffs.get_trending,
         )
         self.search = async_to_raw_response_wrapper(
-            gifs.search,
+            giffffs.search,
         )
         self.translate = async_to_raw_response_wrapper(
-            gifs.translate,
+            giffffs.translate,
         )
 
 
-class GifsResourceWithStreamingResponse:
-    def __init__(self, gifs: GifsResource) -> None:
-        self._gifs = gifs
+class GiffffsResourceWithStreamingResponse:
+    def __init__(self, giffffs: GiffffsResource) -> None:
+        self._giffffs = giffffs
 
         self.retrieve = to_streamed_response_wrapper(
-            gifs.retrieve,
+            giffffs.retrieve,
         )
         self.list = to_streamed_response_wrapper(
-            gifs.list,
+            giffffs.list,
         )
         self.get_random = to_streamed_response_wrapper(
-            gifs.get_random,
+            giffffs.get_random,
         )
         self.get_trending = to_streamed_response_wrapper(
-            gifs.get_trending,
+            giffffs.get_trending,
         )
         self.search = to_streamed_response_wrapper(
-            gifs.search,
+            giffffs.search,
         )
         self.translate = to_streamed_response_wrapper(
-            gifs.translate,
+            giffffs.translate,
         )
 
 
-class AsyncGifsResourceWithStreamingResponse:
-    def __init__(self, gifs: AsyncGifsResource) -> None:
-        self._gifs = gifs
+class AsyncGiffffsResourceWithStreamingResponse:
+    def __init__(self, giffffs: AsyncGiffffsResource) -> None:
+        self._giffffs = giffffs
 
         self.retrieve = async_to_streamed_response_wrapper(
-            gifs.retrieve,
+            giffffs.retrieve,
         )
         self.list = async_to_streamed_response_wrapper(
-            gifs.list,
+            giffffs.list,
         )
         self.get_random = async_to_streamed_response_wrapper(
-            gifs.get_random,
+            giffffs.get_random,
         )
         self.get_trending = async_to_streamed_response_wrapper(
-            gifs.get_trending,
+            giffffs.get_trending,
         )
         self.search = async_to_streamed_response_wrapper(
-            gifs.search,
+            giffffs.search,
         )
         self.translate = async_to_streamed_response_wrapper(
-            gifs.translate,
+            giffffs.translate,
         )
