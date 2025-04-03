@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class GiphyError(Exception):
+class Giphy2Error(Exception):
     pass
 
 
-class APIError(GiphyError):
+class APIError(Giphy2Error):
     message: str
     request: httpx.Request
 

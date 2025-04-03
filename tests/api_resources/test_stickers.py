@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from giphy import Giphy, AsyncGiphy
+from giphy import Giphy2, AsyncGiphy2
 from giphy.types import (
     StickerSearchResponse,
     StickerGetRandomResponse,
@@ -24,13 +24,13 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_random(self, client: Giphy) -> None:
+    def test_method_get_random(self, client: Giphy2) -> None:
         sticker = client.stickers.get_random()
         assert_matches_type(StickerGetRandomResponse, sticker, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_random_with_all_params(self, client: Giphy) -> None:
+    def test_method_get_random_with_all_params(self, client: Giphy2) -> None:
         sticker = client.stickers.get_random(
             rating="rating",
             tag="tag",
@@ -39,7 +39,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_random(self, client: Giphy) -> None:
+    def test_raw_response_get_random(self, client: Giphy2) -> None:
         response = client.stickers.with_raw_response.get_random()
 
         assert response.is_closed is True
@@ -49,7 +49,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_random(self, client: Giphy) -> None:
+    def test_streaming_response_get_random(self, client: Giphy2) -> None:
         with client.stickers.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,13 +61,13 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_trending(self, client: Giphy) -> None:
+    def test_method_get_trending(self, client: Giphy2) -> None:
         sticker = client.stickers.get_trending()
         assert_matches_type(StickerGetTrendingResponse, sticker, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_trending_with_all_params(self, client: Giphy) -> None:
+    def test_method_get_trending_with_all_params(self, client: Giphy2) -> None:
         sticker = client.stickers.get_trending(
             limit=0,
             offset=0,
@@ -77,7 +77,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_trending(self, client: Giphy) -> None:
+    def test_raw_response_get_trending(self, client: Giphy2) -> None:
         response = client.stickers.with_raw_response.get_trending()
 
         assert response.is_closed is True
@@ -87,7 +87,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_trending(self, client: Giphy) -> None:
+    def test_streaming_response_get_trending(self, client: Giphy2) -> None:
         with client.stickers.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,7 +99,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search(self, client: Giphy) -> None:
+    def test_method_search(self, client: Giphy2) -> None:
         sticker = client.stickers.search(
             q="q",
         )
@@ -107,7 +107,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search_with_all_params(self, client: Giphy) -> None:
+    def test_method_search_with_all_params(self, client: Giphy2) -> None:
         sticker = client.stickers.search(
             q="q",
             lang="lang",
@@ -119,7 +119,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_search(self, client: Giphy) -> None:
+    def test_raw_response_search(self, client: Giphy2) -> None:
         response = client.stickers.with_raw_response.search(
             q="q",
         )
@@ -131,7 +131,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_search(self, client: Giphy) -> None:
+    def test_streaming_response_search(self, client: Giphy2) -> None:
         with client.stickers.with_streaming_response.search(
             q="q",
         ) as response:
@@ -145,7 +145,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_translate(self, client: Giphy) -> None:
+    def test_method_translate(self, client: Giphy2) -> None:
         sticker = client.stickers.translate(
             s="s",
         )
@@ -153,7 +153,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_translate(self, client: Giphy) -> None:
+    def test_raw_response_translate(self, client: Giphy2) -> None:
         response = client.stickers.with_raw_response.translate(
             s="s",
         )
@@ -165,7 +165,7 @@ class TestStickers:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_translate(self, client: Giphy) -> None:
+    def test_streaming_response_translate(self, client: Giphy2) -> None:
         with client.stickers.with_streaming_response.translate(
             s="s",
         ) as response:
@@ -183,13 +183,13 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_random(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.get_random()
         assert_matches_type(StickerGetRandomResponse, sticker, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_random_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_random_with_all_params(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.get_random(
             rating="rating",
             tag="tag",
@@ -198,7 +198,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_get_random(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.stickers.with_raw_response.get_random()
 
         assert response.is_closed is True
@@ -208,7 +208,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_get_random(self, async_client: AsyncGiphy2) -> None:
         async with async_client.stickers.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,13 +220,13 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_trending(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.get_trending()
         assert_matches_type(StickerGetTrendingResponse, sticker, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_trending_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_trending_with_all_params(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.get_trending(
             limit=0,
             offset=0,
@@ -236,7 +236,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_get_trending(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.stickers.with_raw_response.get_trending()
 
         assert response.is_closed is True
@@ -246,7 +246,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_get_trending(self, async_client: AsyncGiphy2) -> None:
         async with async_client.stickers.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,7 +258,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search(self, async_client: AsyncGiphy) -> None:
+    async def test_method_search(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.search(
             q="q",
         )
@@ -266,7 +266,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_search_with_all_params(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.search(
             q="q",
             lang="lang",
@@ -278,7 +278,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_search(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_search(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.stickers.with_raw_response.search(
             q="q",
         )
@@ -290,7 +290,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_search(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_search(self, async_client: AsyncGiphy2) -> None:
         async with async_client.stickers.with_streaming_response.search(
             q="q",
         ) as response:
@@ -304,7 +304,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_method_translate(self, async_client: AsyncGiphy2) -> None:
         sticker = await async_client.stickers.translate(
             s="s",
         )
@@ -312,7 +312,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_translate(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.stickers.with_raw_response.translate(
             s="s",
         )
@@ -324,7 +324,7 @@ class TestAsyncStickers:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_translate(self, async_client: AsyncGiphy2) -> None:
         async with async_client.stickers.with_streaming_response.translate(
             s="s",
         ) as response:
