@@ -16,9 +16,9 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Giphy please follow the respective company's security reporting guidelines.
+or products provided by Giphy2 please follow the respective company's security reporting guidelines.
 
-### Giphy Terms and Policies
+### Giphy2 Terms and Policies
 
 Please contact support@giphy.com for any questions or concerns regarding security of our services.
 

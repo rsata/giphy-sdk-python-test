@@ -33,14 +33,14 @@ from ._base_client import (
     AsyncAPIClient,
 )
 
-__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Giphy", "AsyncGiphy", "Client", "AsyncClient"]
+__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Giphy2", "AsyncGiphy2", "Client", "AsyncClient"]
 
 
-class Giphy(SyncAPIClient):
+class Giphy2(SyncAPIClient):
     giffffs: giffffs.GiffffsResource
     stickers: stickers.StickersResource
-    with_raw_response: GiphyWithRawResponse
-    with_streaming_response: GiphyWithStreamedResponse
+    with_raw_response: Giphy2WithRawResponse
+    with_streaming_response: Giphy2WithStreamedResponse
 
     # client options
     api_key: str | None
@@ -68,7 +68,7 @@ class Giphy(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous Giphy client instance.
+        """Construct a new synchronous Giphy2 client instance.
 
         This automatically infers the `api_key` argument from the `GIPHY_API_KEY` environment variable if it is not provided.
         """
@@ -77,7 +77,7 @@ class Giphy(SyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("GIPHY_BASE_URL")
+            base_url = os.environ.get("GIPHY2_BASE_URL")
         if base_url is None:
             base_url = f"https://api.giphy.com/v1"
 
@@ -94,8 +94,8 @@ class Giphy(SyncAPIClient):
 
         self.giffffs = giffffs.GiffffsResource(self)
         self.stickers = stickers.StickersResource(self)
-        self.with_raw_response = GiphyWithRawResponse(self)
-        self.with_streaming_response = GiphyWithStreamedResponse(self)
+        self.with_raw_response = Giphy2WithRawResponse(self)
+        self.with_streaming_response = Giphy2WithStreamedResponse(self)
 
     @property
     @override
@@ -209,11 +209,11 @@ class Giphy(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncGiphy(AsyncAPIClient):
+class AsyncGiphy2(AsyncAPIClient):
     giffffs: giffffs.AsyncGiffffsResource
     stickers: stickers.AsyncStickersResource
-    with_raw_response: AsyncGiphyWithRawResponse
-    with_streaming_response: AsyncGiphyWithStreamedResponse
+    with_raw_response: AsyncGiphy2WithRawResponse
+    with_streaming_response: AsyncGiphy2WithStreamedResponse
 
     # client options
     api_key: str | None
@@ -241,7 +241,7 @@ class AsyncGiphy(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncGiphy client instance.
+        """Construct a new async AsyncGiphy2 client instance.
 
         This automatically infers the `api_key` argument from the `GIPHY_API_KEY` environment variable if it is not provided.
         """
@@ -250,7 +250,7 @@ class AsyncGiphy(AsyncAPIClient):
         self.api_key = api_key
 
         if base_url is None:
-            base_url = os.environ.get("GIPHY_BASE_URL")
+            base_url = os.environ.get("GIPHY2_BASE_URL")
         if base_url is None:
             base_url = f"https://api.giphy.com/v1"
 
@@ -267,8 +267,8 @@ class AsyncGiphy(AsyncAPIClient):
 
         self.giffffs = giffffs.AsyncGiffffsResource(self)
         self.stickers = stickers.AsyncStickersResource(self)
-        self.with_raw_response = AsyncGiphyWithRawResponse(self)
-        self.with_streaming_response = AsyncGiphyWithStreamedResponse(self)
+        self.with_raw_response = AsyncGiphy2WithRawResponse(self)
+        self.with_streaming_response = AsyncGiphy2WithStreamedResponse(self)
 
     @property
     @override
@@ -382,30 +382,30 @@ class AsyncGiphy(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class GiphyWithRawResponse:
-    def __init__(self, client: Giphy) -> None:
+class Giphy2WithRawResponse:
+    def __init__(self, client: Giphy2) -> None:
         self.giffffs = giffffs.GiffffsResourceWithRawResponse(client.giffffs)
         self.stickers = stickers.StickersResourceWithRawResponse(client.stickers)
 
 
-class AsyncGiphyWithRawResponse:
-    def __init__(self, client: AsyncGiphy) -> None:
+class AsyncGiphy2WithRawResponse:
+    def __init__(self, client: AsyncGiphy2) -> None:
         self.giffffs = giffffs.AsyncGiffffsResourceWithRawResponse(client.giffffs)
         self.stickers = stickers.AsyncStickersResourceWithRawResponse(client.stickers)
 
 
-class GiphyWithStreamedResponse:
-    def __init__(self, client: Giphy) -> None:
+class Giphy2WithStreamedResponse:
+    def __init__(self, client: Giphy2) -> None:
         self.giffffs = giffffs.GiffffsResourceWithStreamingResponse(client.giffffs)
         self.stickers = stickers.StickersResourceWithStreamingResponse(client.stickers)
 
 
-class AsyncGiphyWithStreamedResponse:
-    def __init__(self, client: AsyncGiphy) -> None:
+class AsyncGiphy2WithStreamedResponse:
+    def __init__(self, client: AsyncGiphy2) -> None:
         self.giffffs = giffffs.AsyncGiffffsResourceWithStreamingResponse(client.giffffs)
         self.stickers = stickers.AsyncStickersResourceWithStreamingResponse(client.stickers)
 
 
-Client = Giphy
+Client = Giphy2
 
-AsyncClient = AsyncGiphy
+AsyncClient = AsyncGiphy2

@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from giphy import Giphy, AsyncGiphy
+from giphy import Giphy2, AsyncGiphy2
 from giphy.types import (
     GiffffListResponse,
     GiffffSearchResponse,
@@ -26,7 +26,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: Giphy) -> None:
+    def test_method_retrieve(self, client: Giphy2) -> None:
         giffff = client.giffffs.retrieve(
             0,
         )
@@ -34,7 +34,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: Giphy) -> None:
+    def test_raw_response_retrieve(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.retrieve(
             0,
         )
@@ -46,7 +46,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: Giphy) -> None:
+    def test_streaming_response_retrieve(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.retrieve(
             0,
         ) as response:
@@ -60,13 +60,13 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: Giphy) -> None:
+    def test_method_list(self, client: Giphy2) -> None:
         giffff = client.giffffs.list()
         assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: Giphy) -> None:
+    def test_method_list_with_all_params(self, client: Giphy2) -> None:
         giffff = client.giffffs.list(
             ids="ids",
         )
@@ -74,7 +74,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: Giphy) -> None:
+    def test_raw_response_list(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.list()
 
         assert response.is_closed is True
@@ -84,7 +84,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: Giphy) -> None:
+    def test_streaming_response_list(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,13 +96,13 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_random(self, client: Giphy) -> None:
+    def test_method_get_random(self, client: Giphy2) -> None:
         giffff = client.giffffs.get_random()
         assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_random_with_all_params(self, client: Giphy) -> None:
+    def test_method_get_random_with_all_params(self, client: Giphy2) -> None:
         giffff = client.giffffs.get_random(
             rating="rating",
             tag="tag",
@@ -111,7 +111,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_random(self, client: Giphy) -> None:
+    def test_raw_response_get_random(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.get_random()
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_random(self, client: Giphy) -> None:
+    def test_streaming_response_get_random(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -133,13 +133,13 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_trending(self, client: Giphy) -> None:
+    def test_method_get_trending(self, client: Giphy2) -> None:
         giffff = client.giffffs.get_trending()
         assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_get_trending_with_all_params(self, client: Giphy) -> None:
+    def test_method_get_trending_with_all_params(self, client: Giphy2) -> None:
         giffff = client.giffffs.get_trending(
             limit=0,
             offset=0,
@@ -149,7 +149,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_get_trending(self, client: Giphy) -> None:
+    def test_raw_response_get_trending(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.get_trending()
 
         assert response.is_closed is True
@@ -159,7 +159,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_get_trending(self, client: Giphy) -> None:
+    def test_streaming_response_get_trending(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -171,7 +171,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search(self, client: Giphy) -> None:
+    def test_method_search(self, client: Giphy2) -> None:
         giffff = client.giffffs.search(
             q="q",
         )
@@ -179,7 +179,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search_with_all_params(self, client: Giphy) -> None:
+    def test_method_search_with_all_params(self, client: Giphy2) -> None:
         giffff = client.giffffs.search(
             q="q",
             lang="lang",
@@ -191,7 +191,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_search(self, client: Giphy) -> None:
+    def test_raw_response_search(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.search(
             q="q",
         )
@@ -203,7 +203,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_search(self, client: Giphy) -> None:
+    def test_streaming_response_search(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.search(
             q="q",
         ) as response:
@@ -217,7 +217,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_translate(self, client: Giphy) -> None:
+    def test_method_translate(self, client: Giphy2) -> None:
         giffff = client.giffffs.translate(
             s="s",
         )
@@ -225,7 +225,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_translate(self, client: Giphy) -> None:
+    def test_raw_response_translate(self, client: Giphy2) -> None:
         response = client.giffffs.with_raw_response.translate(
             s="s",
         )
@@ -237,7 +237,7 @@ class TestGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_translate(self, client: Giphy) -> None:
+    def test_streaming_response_translate(self, client: Giphy2) -> None:
         with client.giffffs.with_streaming_response.translate(
             s="s",
         ) as response:
@@ -255,7 +255,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGiphy) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.retrieve(
             0,
         )
@@ -263,7 +263,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.retrieve(
             0,
         )
@@ -275,7 +275,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.retrieve(
             0,
         ) as response:
@@ -289,13 +289,13 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGiphy) -> None:
+    async def test_method_list(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.list()
         assert_matches_type(GiffffListResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.list(
             ids="ids",
         )
@@ -303,7 +303,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.list()
 
         assert response.is_closed is True
@@ -313,7 +313,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -325,13 +325,13 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_random(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.get_random()
         assert_matches_type(GiffffGetRandomResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_random_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_random_with_all_params(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.get_random(
             rating="rating",
             tag="tag",
@@ -340,7 +340,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_get_random(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.get_random()
 
         assert response.is_closed is True
@@ -350,7 +350,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_random(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_get_random(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.get_random() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -362,13 +362,13 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_trending(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.get_trending()
         assert_matches_type(GiffffGetTrendingResponse, giffff, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_get_trending_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_get_trending_with_all_params(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.get_trending(
             limit=0,
             offset=0,
@@ -378,7 +378,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_get_trending(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.get_trending()
 
         assert response.is_closed is True
@@ -388,7 +388,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_get_trending(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_get_trending(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.get_trending() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -400,7 +400,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search(self, async_client: AsyncGiphy) -> None:
+    async def test_method_search(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.search(
             q="q",
         )
@@ -408,7 +408,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search_with_all_params(self, async_client: AsyncGiphy) -> None:
+    async def test_method_search_with_all_params(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.search(
             q="q",
             lang="lang",
@@ -420,7 +420,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_search(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_search(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.search(
             q="q",
         )
@@ -432,7 +432,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_search(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_search(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.search(
             q="q",
         ) as response:
@@ -446,7 +446,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_method_translate(self, async_client: AsyncGiphy2) -> None:
         giffff = await async_client.giffffs.translate(
             s="s",
         )
@@ -454,7 +454,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_raw_response_translate(self, async_client: AsyncGiphy2) -> None:
         response = await async_client.giffffs.with_raw_response.translate(
             s="s",
         )
@@ -466,7 +466,7 @@ class TestAsyncGiffffs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_translate(self, async_client: AsyncGiphy) -> None:
+    async def test_streaming_response_translate(self, async_client: AsyncGiphy2) -> None:
         async with async_client.giffffs.with_streaming_response.translate(
             s="s",
         ) as response:
