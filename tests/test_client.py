@@ -21,7 +21,7 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from giphy import Giphy, AsyncGiphy, APIResponseValidationError
+from giphy import Giphy2, AsyncGiphy2, APIResponseValidationError
 from giphy._types import Omit
 from giphy._models import BaseModel, FinalRequestOptions
 from giphy._constants import RAW_RESPONSE_HEADER
@@ -44,7 +44,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: Giphy | AsyncGiphy) -> int:
+def _get_open_connections(client: Giphy2 | AsyncGiphy2) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -52,8 +52,8 @@ def _get_open_connections(client: Giphy | AsyncGiphy) -> int:
     return len(pool._requests)
 
 
-class TestGiphy:
-    client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestGiphy2:
+    client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -100,7 +100,7 @@ class TestGiphy:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = Giphy(
+        client = Giphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -134,7 +134,7 @@ class TestGiphy:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = Giphy(
+        client = Giphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -259,7 +259,7 @@ class TestGiphy:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0))
+        client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -268,7 +268,7 @@ class TestGiphy:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = Giphy(
+            client = Giphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -278,7 +278,7 @@ class TestGiphy:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = Giphy(
+            client = Giphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -288,7 +288,7 @@ class TestGiphy:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = Giphy(
+            client = Giphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -299,7 +299,7 @@ class TestGiphy:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                Giphy(
+                Giphy2(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -307,14 +307,14 @@ class TestGiphy:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = Giphy(
+        client = Giphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = Giphy(
+        client2 = Giphy2(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -328,7 +328,7 @@ class TestGiphy:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_default_query_option(self) -> None:
-        client = Giphy(
+        client = Giphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -442,7 +442,7 @@ class TestGiphy:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: Giphy) -> None:
+    def test_multipart_repeating_array(self, client: Giphy2) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -529,7 +529,7 @@ class TestGiphy:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = Giphy(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
+        client = Giphy2(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -537,15 +537,15 @@ class TestGiphy:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GIPHY_BASE_URL="http://localhost:5000/from/env"):
-            client = Giphy(api_key=api_key, _strict_response_validation=True)
+        with update_env(GIPHY2_BASE_URL="http://localhost:5000/from/env"):
+            client = Giphy2(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            Giphy(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Giphy(
+            Giphy2(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Giphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -554,7 +554,7 @@ class TestGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: Giphy) -> None:
+    def test_base_url_trailing_slash(self, client: Giphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -567,8 +567,8 @@ class TestGiphy:
     @pytest.mark.parametrize(
         "client",
         [
-            Giphy(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Giphy(
+            Giphy2(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Giphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -577,7 +577,7 @@ class TestGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: Giphy) -> None:
+    def test_base_url_no_trailing_slash(self, client: Giphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -590,8 +590,8 @@ class TestGiphy:
     @pytest.mark.parametrize(
         "client",
         [
-            Giphy(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Giphy(
+            Giphy2(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
+            Giphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -600,7 +600,7 @@ class TestGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: Giphy) -> None:
+    def test_absolute_request_url(self, client: Giphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -611,7 +611,7 @@ class TestGiphy:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -622,7 +622,7 @@ class TestGiphy:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -643,7 +643,7 @@ class TestGiphy:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
+            Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -652,12 +652,12 @@ class TestGiphy:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -685,7 +685,7 @@ class TestGiphy:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Giphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Giphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -718,7 +718,7 @@ class TestGiphy:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: Giphy,
+        client: Giphy2,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -746,7 +746,9 @@ class TestGiphy:
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("giphy._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_omit_retry_count_header(self, client: Giphy, failures_before_success: int, respx_mock: MockRouter) -> None:
+    def test_omit_retry_count_header(
+        self, client: Giphy2, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
         client = client.with_options(max_retries=4)
 
         nb_retries = 0
@@ -768,7 +770,7 @@ class TestGiphy:
     @mock.patch("giphy._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: Giphy, failures_before_success: int, respx_mock: MockRouter
+        self, client: Giphy2, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -788,8 +790,8 @@ class TestGiphy:
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
 
-class TestAsyncGiphy:
-    client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncGiphy2:
+    client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -838,7 +840,7 @@ class TestAsyncGiphy:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncGiphy(
+        client = AsyncGiphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -872,7 +874,7 @@ class TestAsyncGiphy:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncGiphy(
+        client = AsyncGiphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -997,7 +999,7 @@ class TestAsyncGiphy:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncGiphy(
+        client = AsyncGiphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -1008,7 +1010,7 @@ class TestAsyncGiphy:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncGiphy(
+            client = AsyncGiphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1018,7 +1020,7 @@ class TestAsyncGiphy:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncGiphy(
+            client = AsyncGiphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1028,7 +1030,7 @@ class TestAsyncGiphy:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncGiphy(
+            client = AsyncGiphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1039,7 +1041,7 @@ class TestAsyncGiphy:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncGiphy(
+                AsyncGiphy2(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1047,14 +1049,14 @@ class TestAsyncGiphy:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncGiphy(
+        client = AsyncGiphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncGiphy(
+        client2 = AsyncGiphy2(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1068,7 +1070,7 @@ class TestAsyncGiphy:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_default_query_option(self) -> None:
-        client = AsyncGiphy(
+        client = AsyncGiphy2(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1182,7 +1184,7 @@ class TestAsyncGiphy:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncGiphy) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncGiphy2) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1269,7 +1271,9 @@ class TestAsyncGiphy:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncGiphy(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
+        client = AsyncGiphy2(
+            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
+        )
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -1277,17 +1281,17 @@ class TestAsyncGiphy:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GIPHY_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncGiphy(api_key=api_key, _strict_response_validation=True)
+        with update_env(GIPHY2_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncGiphy2(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1296,7 +1300,7 @@ class TestAsyncGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncGiphy) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncGiphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1309,10 +1313,10 @@ class TestAsyncGiphy:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1321,7 +1325,7 @@ class TestAsyncGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncGiphy) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncGiphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1334,10 +1338,10 @@ class TestAsyncGiphy:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1346,7 +1350,7 @@ class TestAsyncGiphy:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncGiphy) -> None:
+    def test_absolute_request_url(self, client: AsyncGiphy2) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1357,7 +1361,7 @@ class TestAsyncGiphy:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1369,7 +1373,7 @@ class TestAsyncGiphy:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1391,7 +1395,7 @@ class TestAsyncGiphy:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncGiphy(
+            AsyncGiphy2(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1403,12 +1407,12 @@ class TestAsyncGiphy:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1437,7 +1441,7 @@ class TestAsyncGiphy:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncGiphy(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGiphy2(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1471,7 +1475,7 @@ class TestAsyncGiphy:
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncGiphy,
+        async_client: AsyncGiphy2,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1501,7 +1505,7 @@ class TestAsyncGiphy:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncGiphy, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGiphy2, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1525,7 +1529,7 @@ class TestAsyncGiphy:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncGiphy, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGiphy2, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
