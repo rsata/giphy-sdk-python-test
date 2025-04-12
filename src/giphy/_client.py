@@ -103,10 +103,6 @@ class Giphy2(SyncAPIClient):
         return Querystring(array_format="comma")
 
     @property
-    def auth_headers(self) -> httpx.Auth:
-        raise NotImplementedError("This auth method has not been implemented yet.")
-
-    @property
     @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
@@ -274,10 +270,6 @@ class AsyncGiphy2(AsyncAPIClient):
     @override
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
-
-    @property
-    def auth_headers(self) -> httpx.Auth:
-        raise NotImplementedError("This auth method has not been implemented yet.")
 
     @property
     @override
