@@ -1,8 +1,8 @@
-# Giphy Python API library
+# Giphy2 Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/giphy.svg)](https://pypi.org/project/giphy/)
+[![PyPI version](https://img.shields.io/pypi/v/rs-giphy-test.svg)](https://pypi.org/project/rs-giphy-test/)
 
-The Giphy Python library provides convenient access to the Giphy REST API from any Python 3.8+
+The Giphy2 Python library provides convenient access to the Giphy2 REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -15,12 +15,9 @@ The REST API documentation can be found on [developers.giphy.com](https://develo
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/giphy-python.git
+# install from PyPI
+pip install --pre rs-giphy-test
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre giphy`
 
 ## Usage
 
@@ -28,14 +25,14 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from giphy import Giphy
+from giphy import Giphy2
 
-client = Giphy(
+client = Giphy2(
     api_key=os.environ.get("GIPHY_API_KEY"),  # This is the default and can be omitted
 )
 
-gif = client.gifs.list()
-print(gif.data)
+giffffs = client.giffffs.list()
+print(giffffs.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -45,21 +42,21 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncGiphy` instead of `Giphy` and use `await` with each API call:
+Simply import `AsyncGiphy2` instead of `Giphy2` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from giphy import AsyncGiphy
+from giphy import AsyncGiphy2
 
-client = AsyncGiphy(
+client = AsyncGiphy2(
     api_key=os.environ.get("GIPHY_API_KEY"),  # This is the default and can be omitted
 )
 
 
 async def main() -> None:
-    gif = await client.gifs.list()
-    print(gif.data)
+    giffffs = await client.giffffs.list()
+    print(giffffs.data)
 
 
 asyncio.run(main())
@@ -87,12 +84,12 @@ All errors inherit from `giphy.APIError`.
 
 ```python
 import giphy
-from giphy import Giphy
+from giphy import Giphy2
 
-client = Giphy()
+client = Giphy2()
 
 try:
-    client.gifs.list()
+    client.giffffs.list()
 except giphy.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -126,16 +123,16 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from giphy import Giphy
+from giphy import Giphy2
 
 # Configure the default for all requests:
-client = Giphy(
+client = Giphy2(
     # default is 2
     max_retries=0,
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).gifs.list()
+client.with_options(max_retries=5).giffffs.list()
 ```
 
 ### Timeouts
@@ -144,21 +141,21 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from giphy import Giphy
+from giphy import Giphy2
 
 # Configure the default for all requests:
-client = Giphy(
+client = Giphy2(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Giphy(
+client = Giphy2(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).gifs.list()
+client.with_options(timeout=5.0).giffffs.list()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -171,10 +168,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `GIPHY_LOG` to `info`.
+You can enable logging by setting the environment variable `GIPHY2_LOG` to `info`.
 
 ```shell
-$ export GIPHY_LOG=info
+$ export GIPHY2_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -196,19 +193,19 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from giphy import Giphy
+from giphy import Giphy2
 
-client = Giphy()
-response = client.gifs.with_raw_response.list()
+client = Giphy2()
+response = client.giffffs.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
-gif = response.parse()  # get the object that `gifs.list()` would have returned
-print(gif.data)
+giffff = response.parse()  # get the object that `giffffs.list()` would have returned
+print(giffff.data)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/giphy-python/tree/main/src/giphy/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/rsata/giphy-sdk-python-test/tree/main/src/giphy/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/giphy-python/tree/main/src/giphy/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/rsata/giphy-sdk-python-test/tree/main/src/giphy/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -217,7 +214,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.gifs.with_streaming_response.list() as response:
+with client.giffffs.with_streaming_response.list() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -270,10 +267,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from giphy import Giphy, DefaultHttpxClient
+from giphy import Giphy2, DefaultHttpxClient
 
-client = Giphy(
-    # Or use the `GIPHY_BASE_URL` env var
+client = Giphy2(
+    # Or use the `GIPHY2_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -293,9 +290,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from giphy import Giphy
+from giphy import Giphy2
 
-with Giphy() as client:
+with Giphy2() as client:
   # make requests here
   ...
 
@@ -312,7 +309,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/giphy-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/rsata/giphy-sdk-python-test/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 

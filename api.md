@@ -1,4 +1,4 @@
-# Gifs
+# Giffffs
 
 Types:
 
@@ -8,23 +8,23 @@ from giphy.types import (
     Image,
     Meta,
     Pagination,
-    GifRetrieveResponse,
-    GifListResponse,
-    GifGetRandomResponse,
-    GifGetTrendingResponse,
-    GifSearchResponse,
-    GifTranslateResponse,
+    GiffffRetrieveResponse,
+    GiffffListResponse,
+    GiffffGetRandomResponse,
+    GiffffGetTrendingResponse,
+    GiffffSearchResponse,
+    GiffffTranslateResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /gifs/{gifId}">client.gifs.<a href="./src/giphy/resources/gifs.py">retrieve</a>(gif_id) -> <a href="./src/giphy/types/gif_retrieve_response.py">GifRetrieveResponse</a></code>
-- <code title="get /gifs">client.gifs.<a href="./src/giphy/resources/gifs.py">list</a>(\*\*<a href="src/giphy/types/gif_list_params.py">params</a>) -> <a href="./src/giphy/types/gif_list_response.py">GifListResponse</a></code>
-- <code title="get /gifs/random">client.gifs.<a href="./src/giphy/resources/gifs.py">get_random</a>(\*\*<a href="src/giphy/types/gif_get_random_params.py">params</a>) -> <a href="./src/giphy/types/gif_get_random_response.py">GifGetRandomResponse</a></code>
-- <code title="get /gifs/trending">client.gifs.<a href="./src/giphy/resources/gifs.py">get_trending</a>(\*\*<a href="src/giphy/types/gif_get_trending_params.py">params</a>) -> <a href="./src/giphy/types/gif_get_trending_response.py">GifGetTrendingResponse</a></code>
-- <code title="get /gifs/search">client.gifs.<a href="./src/giphy/resources/gifs.py">search</a>(\*\*<a href="src/giphy/types/gif_search_params.py">params</a>) -> <a href="./src/giphy/types/gif_search_response.py">GifSearchResponse</a></code>
-- <code title="get /gifs/translate">client.gifs.<a href="./src/giphy/resources/gifs.py">translate</a>(\*\*<a href="src/giphy/types/gif_translate_params.py">params</a>) -> <a href="./src/giphy/types/gif_translate_response.py">GifTranslateResponse</a></code>
+- <code title="get /gifs/{gifId}">client.giffffs.<a href="./src/giphy/resources/giffffs.py">retrieve</a>(gif_id) -> <a href="./src/giphy/types/giffff_retrieve_response.py">GiffffRetrieveResponse</a></code>
+- <code title="get /gifs">client.giffffs.<a href="./src/giphy/resources/giffffs.py">list</a>(\*\*<a href="src/giphy/types/giffff_list_params.py">params</a>) -> <a href="./src/giphy/types/giffff_list_response.py">GiffffListResponse</a></code>
+- <code title="get /gifs/random">client.giffffs.<a href="./src/giphy/resources/giffffs.py">get_random</a>(\*\*<a href="src/giphy/types/giffff_get_random_params.py">params</a>) -> <a href="./src/giphy/types/giffff_get_random_response.py">GiffffGetRandomResponse</a></code>
+- <code title="get /gifs/trending">client.giffffs.<a href="./src/giphy/resources/giffffs.py">get_trending</a>(\*\*<a href="src/giphy/types/giffff_get_trending_params.py">params</a>) -> <a href="./src/giphy/types/giffff_get_trending_response.py">GiffffGetTrendingResponse</a></code>
+- <code title="get /gifs/search">client.giffffs.<a href="./src/giphy/resources/giffffs.py">search</a>(\*\*<a href="src/giphy/types/giffff_search_params.py">params</a>) -> <a href="./src/giphy/types/giffff_search_response.py">GiffffSearchResponse</a></code>
+- <code title="get /gifs/translate">client.giffffs.<a href="./src/giphy/resources/giffffs.py">translate</a>(\*\*<a href="src/giphy/types/giffff_translate_params.py">params</a>) -> <a href="./src/giphy/types/giffff_translate_response.py">GiffffTranslateResponse</a></code>
 
 # Stickers
 

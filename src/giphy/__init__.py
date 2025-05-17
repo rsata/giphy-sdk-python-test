@@ -1,16 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import typing as _t
+
 from . import types
 from ._types import NOT_GIVEN, Omit, NoneType, NotGiven, Transport, ProxiesTypes
 from ._utils import file_from_path
-from ._client import Giphy, Client, Stream, Timeout, Transport, AsyncGiphy, AsyncClient, AsyncStream, RequestOptions
+from ._client import Client, Giphy2, Stream, Timeout, Transport, AsyncClient, AsyncGiphy2, AsyncStream, RequestOptions
 from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
 from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
 from ._exceptions import (
     APIError,
-    GiphyError,
+    Giphy2Error,
     ConflictError,
     NotFoundError,
     APIStatusError,
@@ -37,7 +39,7 @@ __all__ = [
     "NotGiven",
     "NOT_GIVEN",
     "Omit",
-    "GiphyError",
+    "Giphy2Error",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -57,8 +59,8 @@ __all__ = [
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "Giphy",
-    "AsyncGiphy",
+    "Giphy2",
+    "AsyncGiphy2",
     "file_from_path",
     "BaseModel",
     "DEFAULT_TIMEOUT",
@@ -67,6 +69,9 @@ __all__ = [
     "DefaultHttpxClient",
     "DefaultAsyncHttpxClient",
 ]
+
+if not _t.TYPE_CHECKING:
+    from ._utils._resources_proxy import resources as resources
 
 _setup_logging()
 

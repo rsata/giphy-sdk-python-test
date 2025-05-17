@@ -1,11 +1,11 @@
 [project]
-name = "giphy"
-version = "0.0.1-alpha.0"
-description = "The official Python library for the giphy API"
+name = "rs-giphy-test"
+version = "0.1.0-alpha.1"
+description = "The official Python library for the giphy2 API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Giphy", email = "support@giphy.com" },
+{ name = "Giphy2", email = "support@giphy.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -34,15 +34,15 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/giphy-python"
-Repository = "https://github.com/stainless-sdks/giphy-python"
+Homepage = "https://github.com/rsata/giphy-sdk-python-test"
+Repository = "https://github.com/rsata/giphy-sdk-python-test"
 
 
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
 dev-dependencies = [
-    "pyright>=1.1.359",
+    "pyright==1.1.399",
     "mypy",
     "respx",
     "pytest",
@@ -121,7 +121,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/giphy-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/rsata/giphy-sdk-python-test/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -147,6 +147,7 @@ exclude = [
 ]
 
 reportImplicitOverride = true
+reportOverlappingOverload = false
 
 reportImportCycles = false
 reportPrivateUsage = false

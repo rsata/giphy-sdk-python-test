@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["GifSearchParams"]
+__all__ = ["GiffffSearchParams"]
 
 
-class GifSearchParams(TypedDict, total=False):
+class GiffffSearchParams(TypedDict, total=False):
     q: Required[str]
     """Search query term or prhase."""
 
